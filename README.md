@@ -1,35 +1,41 @@
 # 📚 Tugas Studi Kasus: Bookstore Web Application
 
-Proyek ini merupakan pengerjaan tugas aplikasi web toko buku berbasis **React JS** yang dibuat menggunakan **Vite**, **Bootstrap 5**, dan **Font Awesome**.
+Proyek ini merupakan pengerjaan tugas aplikasi web toko buku berbasis **React JS** yang dibuat menggunakan **Vite**, **Bootstrap 5**, **Font Awesome**, dan **React Router**.
 
 ---
 
-## Yang Dikerjakan dalam Tugas Ini
+## 🚀 Fitur & Hal yang Dikerjakan
 
-1. **Merapikan Halaman Home**
-   - Merapikan struktur elemen header, hero section, dan katalog produk.
-   - Mengubah atribut HTML `class` menjadi `className` serta memperbaiki tag self-closing.
-   - Mengubah konten teks dan gambar banner/katalog menggunakan data buku kustom.
-   - Menambahkan ikon buku pada bagian *branding* header.
+1. **Implementasi Routing Deklaratif (React Router)**
+   - Mengintegrasikan `react-router-dom` (`BrowserRouter`, `Routes`, `Route`, `NavLink`, `Link`) untuk navigasi *Single Page Application* (SPA) tanpa *full reload*.
+   - Menggunakan `NavLink` pada Navbar untuk memberikan gaya indikator *active page* secara otomatis saat halaman dibuka.
 
-2. **Melengkapi Halaman Team & Contact**
-   - **Halaman Team**: Menampilkan kartu profil anggota tim pengembang lengkap dengan foto, nama, peran, dan bio singkat menggunakan komponen Bootstrap.
-   - **Halaman Contact**: Menampilkan informasi alamat toko/dukungan beserta formulir kirim pesan interaktif.
-   - **Navigasi Interaktif**: Mengintegrasikan `useState` pada `App.jsx` agar pengguna dapat berpindah antara halaman Home, Team, dan Contact secara dinamis.
+2. **Refactoring & Modularisasi Komponen**
+   - Memecah komponen raksasa di `App.jsx` menjadi struktur folder yang teratur (pendekatan *Atomic Design*):
+     - `src/organisms/`: Menyimpan `Navbar.jsx` dan `Footer.jsx`.
+     - `src/pages/`: Menyimpan halaman `Home.jsx`, `Team.jsx`, dan `Contact.jsx`.
+   - Menambahkan rute penanganan rute tak ditemukan (*fallback 404*).
 
-3. **Pengunggahan & Laporan**
-   - Mengunggah repositori proyek ke GitHub.
+3. **Pengembangan Halaman & Konten**
+   - **Halaman Home**: Menyajikan *Hero Section* (Atomic Habits) dan *grid card* katalog buku *best seller*.
+   - **Halaman Team**: Menampilkan kartu profil anggota tim pengembang lengkap dengan foto, nama, peran, dan deskripsi singkat.
+   - **Halaman Contact**: Menyajikan info kontak lokasi/dukungan beserta formulir kirim pesan.
+
+4. **Pengunggahan & Collaboration**
+   - Mengunggah repositori proyek ke GitHub pada branch pengerjaan.
    - Mengundang mentor sebagai *collaborator* repositori.
-   - Mengambil *screenshot* tampilan Home, Team, dan Contact untuk penyusunan laporan PDF.
 
 ---
 
 ## 🛠️ Cara Menjalankan Program
 
 ### 1. Prasyarat
-Pastikan **Node.js** dan **npm** sudah terinstal di komputer.
+Pastikan **Node.js** dan **npm** sudah terinstal di komputer Anda.
 
-### 2. Melakuka Command
+### 2. Instalasi Dependensi
+Jalankan perintah berikut di terminal untuk memasang paket yang dibutuhkan (termasuk `react-router-dom`):
+
 ```bash
 cd booksales
+npm install
 npm run dev
