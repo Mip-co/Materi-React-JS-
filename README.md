@@ -1,29 +1,36 @@
-# 📚 Tugas Studi Kasus: Bookstore Web Application
+# 📚 Tugas React JS Dasar - List Rendering & Hooks
 
-Proyek ini merupakan pengerjaan tugas aplikasi web toko buku berbasis **React JS** yang dibuat menggunakan **Vite**, **Bootstrap 5**, **Font Awesome**, dan **React Router**.
+Proyek ini merupakan pengerjaan **Tugas React JS Dasar - 3** pada aplikasi toko buku berbasis **React JS** yang dibangun menggunakan **Vite**, **Bootstrap 5**, dan **React Router**.
 
 ---
 
-## 🚀 Fitur & Hal yang Dikerjakan
+## 🚀 Pengerjaan & Fitur Utama
 
-1. **Implementasi Routing Deklaratif (React Router)**
-   - Mengintegrasikan `react-router-dom` (`BrowserRouter`, `Routes`, `Route`, `NavLink`, `Link`) untuk navigasi *Single Page Application* (SPA) tanpa *full reload*.
-   - Menggunakan `NavLink` pada Navbar untuk memberikan gaya indikator *active page* secara otomatis saat halaman dibuka.
+1. **Membuat Utility Data Terpusat (`src/Utils/books.js`)**
+   - Membuat folder `Utils` di dalam direktori `src`.
+   - Membuat file `books.js` yang berisi *array of objects* dengan minimal **9 data buku**.
+   - Setiap objek buku memuat atribut: `id`, `title`, `author`, `year`, `description`, dan `image`.
 
-2. **Refactoring & Modularisasi Komponen**
-   - Memecah komponen raksasa di `App.jsx` menjadi struktur folder yang teratur (pendekatan *Atomic Design*):
-     - `src/organisms/`: Menyimpan `Navbar.jsx` dan `Footer.jsx`.
-     - `src/pages/`: Menyimpan halaman `Home.jsx`, `Team.jsx`, dan `Contact.jsx`.
-   - Menambahkan rute penanganan rute tak ditemukan (*fallback 404*).
+2. **Rendering List Menggunakan `map()`**
+   - Mengimpor data dari `src/Utils/books.js` dan menampilkan daftar buku secara dinamis menggunakan metode `.map()` pada **Halaman Home (`Home.jsx`)** dan **Halaman Book (`Book.jsx`)**.
+   - Menggunakan atribut `key={book.id}` unik pada setiap elemen card untuk optimasi *re-rendering* React.
 
-3. **Pengembangan Halaman & Konten**
-   - **Halaman Home**: Menyajikan *Hero Section* (Atomic Habits) dan *grid card* katalog buku *best seller*.
-   - **Halaman Team**: Menampilkan kartu profil anggota tim pengembang lengkap dengan foto, nama, peran, dan deskripsi singkat.
-   - **Halaman Contact**: Menyajikan info kontak lokasi/dukungan beserta formulir kirim pesan.
+3. **Pengelolaan State & Nilai Tambah (Hooks `useState`)**
+   - Menggunakan Hook `useState` untuk menyimpan dan mengelola data buku pada komponen.
+   - **Fitur Tambah Buku**: Menambahkan tombol aksi untuk memasukkan data buku baru secara interaktif menggunakan *spread operator* (`...`).
+   - **Fitur Pencarian**: Memfilter daftar buku berdasarkan kata kunci judul atau nama penulis secara *real-time*.
 
-4. **Pengunggahan & Collaboration**
-   - Mengunggah repositori proyek ke GitHub pada branch pengerjaan.
-   - Mengundang mentor sebagai *collaborator* repositori.
+4. **Routing Navigation (React Router)**
+   - Mengintegrasikan rute `/book` di `App.jsx` agar halaman katalog buku dapat diakses secara dinamis.
+
+---
+
+## 📂 File yang Dibuat & Terdampak
+
+- **`src/Utils/books.js`** *(File Baru)*: Menyimpan array data dummy 9 buku yang di-export terpusat.
+- **`src/pages/Home.jsx`** *(Modifikasi)*: Mengimpor `books.js`, merender daftar buku secara dinamis dengan `.map()`, serta menyediakan fungsi tambah buku (`useState`).
+- **`src/pages/Book.jsx`** *(File Baru/Modifikasi)*: Menampilkan katalog buku dengan `.map()`, fitur pencarian, dan tombol tambah buku.
+- **`src/App.jsx`** *(Modifikasi)*: Menambahkan impor `Book` dan pendaftaran route `<Route path="/book" element={<Book />} />`.
 
 ---
 
@@ -32,8 +39,8 @@ Proyek ini merupakan pengerjaan tugas aplikasi web toko buku berbasis **React JS
 ### 1. Prasyarat
 Pastikan **Node.js** dan **npm** sudah terinstal di komputer Anda.
 
-### 2. Instalasi Dependensi
-Jalankan perintah berikut di terminal untuk memasang paket yang dibutuhkan (termasuk `react-router-dom`):
+### 2. Jalankan Perintah
+Buka terminal dan jalankan perintah berikut:
 
 ```bash
 cd booksales

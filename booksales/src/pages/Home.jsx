@@ -1,4 +1,24 @@
+import { useState } from "react";
+import booksData from "../utils/books";
+
 function Home() {
+  const [books, setBooks] = useState(booksData);
+
+  // Fungsi nilai tambah untuk menambahkan buku baru secara interaktif
+  const handleAddBook = () => {
+    const newId = books.length + 1;
+    const newBook = {
+      id: newId,
+      title: `Buku Baru ${newId}`,
+      author: "Penulis Baru",
+      year: 2024,
+      description: "Deskripsi singkat untuk buku baru yang berhasil ditambahkan.",
+      image: `https://picsum.photos/seed/book${newId}/300/225`
+    };
+
+    setBooks([...books, newBook]);
+  };
+
   return (
     <div>
       {/* Hero Section */}
@@ -42,155 +62,47 @@ function Home() {
                 Koleksi buku-buku terbaik pilihan pembaca minggu ini. Temukan inspirasi dan pengetahuan baru dari para penulis ternama.
               </p>
               <p>
-                <a href="#" className="btn btn-primary my-2 me-2">View Books</a>
-                <a href="#" className="btn btn-secondary my-2">Add Book</a>
+                <a href="#book-list" className="btn btn-primary my-2 me-2">View Books</a>
+                <button onClick={handleAddBook} className="btn btn-secondary my-2">
+                  Add Book 
+                </button>
               </p>
             </div>
           </div>
         </section>
 
         {/* Grid Produk Buku */}
-        <div className="album py-5 bg-body-tertiary">
+        <div id="book-list" className="album py-5 bg-body-tertiary">
           <div className="container">
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-
-              {/* Card 1 */}
-              <div className="col">
-                <div className="card shadow-sm">
-                  <img
-                    src="https://picsum.photos/seed/book1/300/225"
-                    className="card-img-top"
-                    alt="Book Cover"
-                  />
-                  <div className="card-body">
-                    <p className="card-text">
-                      Buku pengembangan diri terbaik yang membahas tentang pembentukan kebiasaan kecil untuk hasil besar.
-                    </p>
-                    <div className="d-flex justify-content-between align-items-center">
-                      <div className="btn-group">
-                        <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
-                        <button type="button" className="btn btn-sm btn-outline-secondary">Edit</button>
+              
+              {/* Loop rendering menggunakan map() */}
+              {books.map((book) => (
+                <div className="col" key={book.id}>
+                  <div className="card shadow-sm h-100">
+                    <img
+                      src={book.image}
+                      className="card-img-top"
+                      alt={book.title}
+                      style={{ height: "225px", objectFit: "cover" }}
+                    />
+                    <div className="card-body d-flex flex-column justify-content-between">
+                      <div>
+                        <h5 className="card-title fw-bold">{book.title}</h5>
+                        <h6 className="card-subtitle mb-2 text-muted">{book.author} ({book.year})</h6>
+                        <p className="card-text">{book.description}</p>
                       </div>
-                      <small className="text-body-secondary">9 mins</small>
+                      <div className="d-flex justify-content-between align-items-center mt-3">
+                        <div className="btn-group">
+                          <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
+                          <button type="button" className="btn btn-sm btn-outline-secondary">Edit</button>
+                        </div>
+                        <small className="text-body-secondary">ID: {book.id}</small>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-
-              {/* Card 2 */}
-              <div className="col">
-                <div className="card shadow-sm">
-                  <img
-                    src="https://picsum.photos/seed/book2/300/225"
-                    className="card-img-top"
-                    alt="Book Cover"
-                  />
-                  <div className="card-body">
-                    <p className="card-text">
-                      Panduan praktis stoisisme dalam menghadapi tantangan hidup modern dengan tenang.
-                    </p>
-                    <div className="d-flex justify-content-between align-items-center">
-                      <div className="btn-group">
-                        <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
-                        <button type="button" className="btn btn-sm btn-outline-secondary">Edit</button>
-                      </div>
-                      <small className="text-body-secondary">15 mins</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Card 3 */}
-              <div className="col">
-                <div className="card shadow-sm">
-                  <img
-                    src="https://picsum.photos/seed/book3/300/225"
-                    className="card-img-top"
-                    alt="Book Cover"
-                  />
-                  <div className="card-body">
-                    <p className="card-text">
-                      Memahami psikologi keuangan dan cara mengelola kekayaan secara bijak untuk jangka panjang.
-                    </p>
-                    <div className="d-flex justify-content-between align-items-center">
-                      <div className="btn-group">
-                        <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
-                        <button type="button" className="btn btn-sm btn-outline-secondary">Edit</button>
-                      </div>
-                      <small className="text-body-secondary">20 mins</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Card 4 */}
-              <div className="col">
-                <div className="card shadow-sm">
-                  <img
-                    src="https://picsum.photos/seed/book4/300/225"
-                    className="card-img-top"
-                    alt="Book Cover"
-                  />
-                  <div className="card-body">
-                    <p className="card-text">
-                      Pendekatan unik untuk memprioritaskan hal-hal yang benar-benar penting dalam kehidupan.
-                    </p>
-                    <div className="d-flex justify-content-between align-items-center">
-                      <div className="btn-group">
-                        <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
-                        <button type="button" className="btn btn-sm btn-outline-secondary">Edit</button>
-                      </div>
-                      <small className="text-body-secondary">30 mins</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Card 5 */}
-              <div className="col">
-                <div className="card shadow-sm">
-                  <img
-                    src="https://picsum.photos/seed/book5/300/225"
-                    className="card-img-top"
-                    alt="Book Cover"
-                  />
-                  <div className="card-body">
-                    <p className="card-text">
-                      Panduan lengkap belajar pemrograman modern dan arsitektur perangkat lunak untuk pemula.
-                    </p>
-                    <div className="d-flex justify-content-between align-items-center">
-                      <div className="btn-group">
-                        <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
-                        <button type="button" className="btn btn-sm btn-outline-secondary">Edit</button>
-                      </div>
-                      <small className="text-body-secondary">45 mins</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Card 6 */}
-              <div className="col">
-                <div className="card shadow-sm">
-                  <img
-                    src="https://picsum.photos/seed/book6/300/225"
-                    className="card-img-top"
-                    alt="Book Cover"
-                  />
-                  <div className="card-body">
-                    <p className="card-text">
-                      Kisah inspiratif tentang perjalanan membangun bisnis startup dari nol hingga sukses.
-                    </p>
-                    <div className="d-flex justify-content-between align-items-center">
-                      <div className="btn-group">
-                        <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
-                        <button type="button" className="btn btn-sm btn-outline-secondary">Edit</button>
-                      </div>
-                      <small className="text-body-secondary">1 hour</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              ))}
 
             </div>
           </div>
